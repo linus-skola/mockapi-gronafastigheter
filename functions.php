@@ -203,7 +203,6 @@ function getRealEstatesById($id) {
 function addRealEstates() {
     global $jwt; //get JWT from headers
     include_once 'config/core.php';
-    include_once 'estates.php';
 
     $data = json_decode(file_get_contents("php://input"));
 
