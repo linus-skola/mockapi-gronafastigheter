@@ -41,5 +41,9 @@ Route::add('/token', function() {
   getToken();
 }, 'get');
 
+Route::add('/api/RealEstates', function() {
+  getRealEstates();
+}, 'get');
+
 // Run the router
 Route::run('/');

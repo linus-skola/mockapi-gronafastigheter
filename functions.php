@@ -24,7 +24,7 @@ function getToken()
     parse_str(file_get_contents("php://input"), $data);
     $data = (object)$data;
     $data->Username = strtolower($data->Username);
-    
+
     if ($data->Username == "kalle" && $data->Password === "karlsson") {
         $token = array(
             "iss" => $iss,
@@ -80,6 +80,45 @@ function validate()
                     "exp" => date("Y-m-d\TH:i:sO", $decoded->exp),
                     "data" => $decoded->data
                 )
+            );
+        } catch (Exception $e) {
+
+            http_response_code(401);
+
+            echo json_encode(
+                array(
+                    "status" => 401,
+                    "message" => "Access denied.",
+                    "error" => $e->getMessage()
+                )
+            );
+        }
+    } else {
+        http_response_code(401);
+
+        echo json_encode(
+            array(
+                "status" => 401,
+                "message" => "Access denied."
+            )
+        );
+    }
+}
+
+function getRealEstates() {
+    global $jwt; //get JWT from headers
+    include_once 'config/core.php';
+    include_once 'estates.php';
+    $estates = new RealEstate();
+
+    if ($jwt) {
+        try {
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
+
+            http_response_code(200);
+
+            echo json_encode(
+                $estates->get()
             );
         } catch (Exception $e) {
 
