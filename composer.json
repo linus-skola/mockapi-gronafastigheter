@@ -1,0 +1,15 @@
+{
+    "name": "linus/mock-api-gronafastigheter",
+    "description": "A mock API for Blazor project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Linus Örnborg",
+            "email": "linus.skola@ornborg.se"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^5.2",
+        "steampixel/simple-php-router": "^0.4.1"
+    }
+}
