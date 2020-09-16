@@ -27,11 +27,11 @@ function getToken()
 
     if ($data->Username == "kalle" && $data->Password === "karlsson") {
         $token = array(
-            "iss" => $iss,
-            "aud" => $aud,
-            "iat" => $iat,
-            "nbf" => $nbf,
-            "exp" => $exp,
+            "Issuer" => $iss,
+            "Audience" => $aud,
+            "Issued" => $iat,
+            "NotBefore" => $nbf,
+            "Expires" => $exp,
             "data" => array(
                 "id" => 1,
                 "user" => $data->Username
@@ -44,9 +44,10 @@ function getToken()
             array(
                 "status" => 200,
                 "message" => "Authorized.",
-                "user" => $data->Username,
-                "exp" => $token["exp"],
-                "jwt" => $jwt
+                "username" => $data->Username,
+                "expires_in" => $token["exp"],
+                "token_type" => "bearer",
+                "access_token" => $jwt
             )
         );
     } else {
