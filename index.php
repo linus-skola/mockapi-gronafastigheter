@@ -39,7 +39,7 @@ Route::add('/', function() {
 
 Route::add('/token', function() {
   getToken();
-}, 'get');
+}, 'post');
 
 Route::add('/api/RealEstates', function() {
   getRealEstates();
