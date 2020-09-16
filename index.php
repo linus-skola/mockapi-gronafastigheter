@@ -1,6 +1,6 @@
 <?php
 // Require the class
-include 'src/Steampixel/Route.php';
+require_once __DIR__ . '/vendor/autoload.php';
 include 'functions.php';
 
 // Use this namespace
@@ -27,8 +27,18 @@ Route::methodNotAllowed(function(){
     );
 });
 
+Route::add('/', function() {
+  http_response_code(404);
+  echo json_encode(
+    array(
+      'status' => 404,
+      'message' => 'Not Found.'
+    )
+  );
+}, 'get');
+
 Route::add('/token', function() {
-    echo 'hello';
+  getToken();
 }, 'get');
 
 // Run the router
