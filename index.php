@@ -1,7 +1,7 @@
 <?php
 // Require the class
 include 'src/Steampixel/Route.php';
-include '../../api_includes/functions.php';
+include 'functions.php';
 
 // Use this namespace
 use Steampixel\Route;
@@ -28,7 +28,7 @@ Route::methodNotAllowed(function(){
 });
 
 Route::add('/token', function() {
-
+    echo 'hello';
 }, 'get');
 
 // Run the router
