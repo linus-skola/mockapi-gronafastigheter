@@ -45,5 +45,9 @@ Route::add('/api/RealEstates', function() {
   getRealEstates();
 }, 'get');
 
+Route::add('/api/RealEstates/([0-9]*)', function($id) {
+  getRealEstatesById($id);
+}, 'get');
+
 // Run the router
 Route::run('/');

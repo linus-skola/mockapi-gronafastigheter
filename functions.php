@@ -143,3 +143,42 @@ function getRealEstates() {
         );
     }
 }
+
+function getRealEstatesById($id) {
+    global $jwt; //get JWT from headers
+    include_once 'config/core.php';
+    include_once 'estates.php';
+    $estates = new RealEstate();
+
+    if ($jwt) {
+        try {
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
+
+            http_response_code(200);
+
+            echo json_encode(
+                $estates->getById($id)
+            );
+        } catch (Exception $e) {
+
+            http_response_code(401);
+
+            echo json_encode(
+                array(
+                    "status" => 401,
+                    "message" => "Access denied.",
+                    "error" => $e->getMessage()
+                )
+            );
+        }
+    } else {
+        http_response_code(401);
+
+        echo json_encode(
+            array(
+                "status" => 401,
+                "message" => "Access denied."
+            )
+        );
+    }
+}
