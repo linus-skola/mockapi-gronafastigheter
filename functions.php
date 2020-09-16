@@ -71,7 +71,6 @@ function validate()
             $decoded = JWT::decode($jwt, $key, array('HS256'));
 
             http_response_code(200);
-
             echo json_encode(
                 array(
                     "status" => 200,
@@ -115,11 +114,20 @@ function getRealEstates() {
         try {
             $decoded = JWT::decode($jwt, $key, array('HS256'));
 
-            http_response_code(200);
-
-            echo json_encode(
-                $estates->get()
+            try{
+                http_response_code(200);
+                echo json_encode(
+                    $estates->get()
             );
+            } catch (Exception $e){
+                echo json_encode(
+                    array(
+                        "status" => http_response_code(),
+                        "error" => $e->getMessage()
+                    )
+                );
+            }
+            
         } catch (Exception $e) {
 
             http_response_code(401);
@@ -154,11 +162,20 @@ function getRealEstatesById($id) {
         try {
             $decoded = JWT::decode($jwt, $key, array('HS256'));
 
-            http_response_code(200);
-
-            echo json_encode(
-                $estates->getById($id)
+            try{
+                http_response_code(200);
+                echo json_encode(
+                    $estates->getById($id)
             );
+            } catch (Exception $e){
+                echo json_encode(
+                    array(
+                        "status" => http_response_code(),
+                        "error" => $e->getMessage()
+                    )
+                );
+            }
+
         } catch (Exception $e) {
 
             http_response_code(401);

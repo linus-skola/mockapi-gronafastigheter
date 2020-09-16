@@ -55,6 +55,7 @@ class RealEstate {
                 return $estate;
             }
         }
-        return null;
+        http_response_code(404);
+        throw new Exception("Not Found.");
     }
 }
