@@ -48,7 +48,7 @@ class RealEstate {
         $obj1->CanBeRented = false;
         $obj1->CreatedOn = "2020-08-22T16:12:24.98";
         $obj1->ConstructionYear = 2003;
-        $obj1->Address = "Konkelvägen 34";
+        $obj1->Address = "Konkelgatan 34";
         $obj1->RealEstateType = "House";
         $obj1->Description = "Very nice and luxury big house.";
         if($this->IsAuthorized){
