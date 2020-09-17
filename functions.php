@@ -111,9 +111,9 @@ function getRealEstates() {
     include_once 'estates.php';
     $estates = new RealEstate();
 
-    if ($jwt) {
+    if ($jwt || !$jwt) {
         try {
-            $decoded = JWT::decode($jwt, $key, array('HS256'));
+            //$decoded = JWT::decode($jwt, $key, array('HS256'));
 
             try{
                 http_response_code(200);
