@@ -109,7 +109,7 @@ function getRealEstates() {
     global $jwt; //get JWT from headers
     include_once 'config/core.php';
     include_once 'estates.php';
-    $estates = new RealEstate();
+    $estates = new RealEstate(false);
 
     if ($jwt || !$jwt) {
         try {
@@ -157,15 +157,15 @@ function getRealEstatesById($id) {
     global $jwt; //get JWT from headers
     include_once 'config/core.php';
     include_once 'estates.php';
-    $estates = new RealEstate();
 
     if ($jwt || !$jwt) {
         try {
             if($jwt){
                 $decoded = JWT::decode($jwt, $key, array('HS256'));
-                $estates->IsAuthorized = true;
+                $estates = new RealEstate(true);
             }
             else {
+                $estates = new RealEstate(false);
                 $estates->IsAuthorized = false;
             }
 
