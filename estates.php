@@ -1,7 +1,6 @@
 <?php
 
 class RealEstateData {
-    public $Authorized;
     public $Id;
     public $Title;
     public $SellingPrice;
@@ -13,8 +12,8 @@ class RealEstateData {
     public $Address;
     public $RealEstateType;
     public $Description;
-    //public $Contact;
-    //public $Comments;
+    public $Contact;
+    public $Comments;
 }
 
 class Comment {
