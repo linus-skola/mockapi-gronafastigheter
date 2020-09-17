@@ -159,9 +159,15 @@ function getRealEstatesById($id) {
     include_once 'estates.php';
     $estates = new RealEstate();
 
-    if ($jwt) {
+    if ($jwt || !$jwt) {
         try {
-            $decoded = JWT::decode($jwt, $key, array('HS256'));
+            if($jwt){
+                $decoded = JWT::decode($jwt, $key, array('HS256'));
+                $estates->IsAuthorized = true;
+            }
+            else {
+                $estates->IsAuthorized = false;
+            }
 
             try{
                 http_response_code(200);
