@@ -53,5 +53,9 @@ Route::add('/api/RealEstates', function() {
   addRealEstates();
 }, 'post');
 
+Route::add('/api/Comments/([0-9]*)', function($id) {
+  postComment($id);
+}, 'get');
+
 // Run the router
 Route::run('/');
