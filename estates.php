@@ -19,14 +19,14 @@ class RealEstateData {
 class Comment {
     public $RealEstateId;
     public $Content;
-    public $Username;
+    public $UserName;
     public $CreatedOn;
 
-    public function __construct($id, $content, $username, $createdOn)
+    public function __construct($id, $content, $userName, $createdOn)
     {
         $this->RealEstateId = $id;
         $this->Content = $content;
-        $this->Username = $username;
+        $this->UserName = $userName;
         $this->CreatedOn = $createdOn;
     }
 }

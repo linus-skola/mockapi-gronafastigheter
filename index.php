@@ -54,7 +54,11 @@ Route::add('/api/RealEstates', function() {
 }, 'post');
 
 Route::add('/api/Comments/([0-9]*)', function($id) {
-  postComment($id);
+  getComment($id);
+}, 'get');
+
+Route::add('/api/Comments/ByUser/([a-z-0-9-]*)', function($slug) {
+  getCommentByUser($slug);
 }, 'get');
 
 // Run the router

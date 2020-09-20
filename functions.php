@@ -255,7 +255,7 @@ function addRealEstates() {
     }
 }
 
-function postComment($id) {
+function getComment($id) {
     global $jwt; //get JWT from headers
     include_once 'config/core.php';
     include_once 'estates.php';
@@ -269,6 +269,67 @@ function postComment($id) {
 
             for($i = 0; $i < $commentCount; $i++){
                 $comment = new Comment($id, "En random kommentar från Linus mycket mer bättre API än andras.", "Aimbot123", date("Y-m-dTH:i:s"));
+                array_push($commentsArray, $comment);
+            }
+
+            try{
+                http_response_code(200);
+                echo json_encode(
+                    $commentsArray
+            );
+            } catch (Exception $e){
+                echo json_encode(
+                    array(
+                        "status" => http_response_code(),
+                        "error" => $e->getMessage()
+                    )
+                );
+            }
+            
+        } catch (Exception $e) {
+
+            http_response_code(401);
+
+            echo json_encode(
+                array(
+                    "status" => 401,
+                    "message" => "Access denied.",
+                    "error" => $e->getMessage()
+                )
+            );
+        }
+    } else {
+        http_response_code(401);
+
+        echo json_encode(
+            array(
+                "status" => 401,
+                "message" => "Access denied."
+            )
+        );
+    }
+}
+
+function getCommentByUser($user) {
+    global $jwt; //get JWT from headers
+    include_once 'config/core.php';
+    include_once 'estates.php';
+
+    if ($jwt) {
+        try {
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
+            
+            $commentCount = rand(1,10);
+            $commentsArray = array();
+            $usersArray = array(
+                'Linus',
+                'Daniel',
+                'Rikard'
+            );
+
+            for($i = 0; $i < $commentCount; $i++){
+                $realEstateId = rand(1,100);
+                $comment = new Comment($realEstateId, "En random kommentar från Linus mycket mer bättre API än andras.", array_rand($usersArray, 1), date("Y-m-dTH:i:s"));
                 array_push($commentsArray, $comment);
             }
 
