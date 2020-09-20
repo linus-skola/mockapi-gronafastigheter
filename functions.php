@@ -317,20 +317,14 @@ function getCommentByUser($user) {
 
     if ($jwt) {
         try {
-            //$decoded = JWT::decode($jwt, $key, array('HS256'));
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
 
             $commentCount = rand(1,10);
             $commentsArray = array();
-            $usersArray = array(
-                'Linus',
-                'Daniel',
-                'Rikard'
-            );
 
             for($i = 0; $i < $commentCount; $i++){
                 $realEstateId = rand(1,100);
-                $user = array_rand($usersArray, 1);
-                $comment = new Comment($realEstateId, "En random kommentar från Linus mycket mer bättre API än andras.", $usersArray[$user], date("Y-m-dTH:i:s"));
+                $comment = new Comment($realEstateId, "En random kommentar från Linus mycket mer bättre API än andras.", $user, date("Y-m-dTH:i:s"));
                 array_push($commentsArray, $comment);
             }
 
