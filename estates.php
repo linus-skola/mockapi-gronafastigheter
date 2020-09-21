@@ -16,6 +16,31 @@ class RealEstateData {
     public $Comments;
 }
 
+class User {
+    public $UserName;
+    public $RealEstates;
+    public $Comments;
+    public $Rating;
+
+    public function __construct($username)
+    {
+        $this->UserName = $username;
+        $this->RealEstates = rand(1,5);
+        $this->Comments = rand(1,10);
+        $this->Rating = random_float(0, 10);
+    }
+
+    public function get(){
+        return $this;
+    }
+}
+
+function random_float($start_number = 0,$end_number = 1,$mul = 1000000)
+{
+    if ($start_number > $end_number) return false;
+    return mt_rand($start_number * $mul,$end_number * $mul)/$mul;
+}
+
 class Comment {
     public $RealEstateId;
     public $Content;
