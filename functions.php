@@ -324,7 +324,7 @@ function getCommentByUser($user) {
 
             for($i = 0; $i < $commentCount; $i++){
                 $realEstateId = rand(1,100);
-                $comment = new Comment($realEstateId, "En random kommentar från Linus mycket mer bättre API än andras.", $user, date("Y-m-dTH:i:s"));
+                $comment = new Comment($realEstateId, "En random kommentar från Linus mycket mer bättre API än andras.", $user, date("Y-m-d\TH:i:s"));
                 array_push($commentsArray, $comment);
             }
 
