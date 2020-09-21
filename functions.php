@@ -268,7 +268,7 @@ function getComment($id) {
             $commentsArray = array();
 
             for($i = 0; $i < $commentCount; $i++){
-                $comment = new Comment($id, "En random kommentar från Linus mycket mer bättre API än andras.", "Aimbot123", date("Y-m-dTH:i:s"));
+                $comment = new Comment($id, "En random kommentar från Linus mycket mer bättre API än andras.", "Aimbot123", date("Y-m-d\TH:i:s"));
                 array_push($commentsArray, $comment);
             }
 
