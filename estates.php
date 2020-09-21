@@ -27,7 +27,7 @@ class User {
         $this->UserName = $username;
         $this->RealEstates = rand(1,5);
         $this->Comments = rand(1,10);
-        $this->Rating = random_float(0, 10);
+        $this->Rating = random_float(0, 5);
     }
 
     public function get(){
