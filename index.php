@@ -62,7 +62,7 @@ Route::add('/api/Comments/ByUser/([a-z-0-9-]*)', function($slug) {
 }, 'get');
 
 Route::add('/api/users/([a-z-0-9-]*)', function($slug) {
-  getCommentByUser($slug);
+  getUser($slug);
 }, 'get');
 
 // Run the router
