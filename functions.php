@@ -266,6 +266,7 @@ function getComment($id) {
 
             $commentCount = rand(1,10);
             $commentsArray = array();
+            settype($id, "integer"); 
 
             for($i = 0; $i < $commentCount; $i++){
                 $comment = new Comment($id, "En random kommentar från Linus mycket mer bättre API än andras.", "Aimbot123", date("Y-m-d\TH:i:s"));
