@@ -2,6 +2,7 @@
 
 class RealEstateData {
     public $Id;
+    public $UserId;
     public $Title;
     public $SellingPrice;
     public $RentingPrice;
@@ -17,6 +18,7 @@ class RealEstateData {
 }
 
 class User {
+    public $Id;
     public $UserName;
     public $RealEstates;
     public $Comments;
@@ -24,6 +26,7 @@ class User {
 
     public function __construct($username)
     {
+        $this->Id = rand(1, 20);
         $this->UserName = $username;
         $this->RealEstates = rand(1,5);
         $this->Comments = rand(1,10);
@@ -66,6 +69,7 @@ class RealEstate {
 
         $obj1 = new RealEstateData;
         $obj1->Id = 1;
+        $obj1->UserId = 1;
         $obj1->Title = "Big House";
         $obj1->SellingPrice = 1100400;
         $obj1->RentingPrice = 0;
@@ -91,6 +95,7 @@ class RealEstate {
     
         $obj2 = new RealEstateData;
         $obj2->Id = 2;
+        $obj2->UserId = 3;
         $obj2->Title = "Small House";
         $obj2->SellingPrice = 765000;
         $obj2->RentingPrice = 4690;
@@ -116,6 +121,7 @@ class RealEstate {
     
         $obj3 = new RealEstateData;
         $obj3->Id = 3;
+        $obj3->UserId = 3;
         $obj3->Title = "Medium Apartment";
         $obj3->SellingPrice = 0;
         $obj3->RentingPrice = 13500;
