@@ -367,6 +367,58 @@ function getCommentByUser($user) {
     }
 }
 
+function postComment() {
+    global $jwt; //get JWT from headers
+    include_once 'config/core.php';
+
+    $data = json_decode(file_get_contents("php://input"));
+
+    if ($jwt) {
+        try {
+            $decoded = JWT::decode($jwt, $key, array('HS256'));
+
+            try{
+                http_response_code(200);
+                echo json_encode(
+                    array(
+                        "Content" => $data->Content,
+                        "UserName" => $decoded->username,
+                        "CreatedOn" => date("Y-m-d\TH:i:s")
+                    )
+            );
+            } catch (Exception $e){
+                echo json_encode(
+                    array(
+                        "status" => http_response_code(),
+                        "error" => $e->getMessage()
+                    )
+                );
+            }
+            
+        } catch (Exception $e) {
+
+            http_response_code(401);
+
+            echo json_encode(
+                array(
+                    "status" => 401,
+                    "message" => "Access denied.",
+                    "error" => $e->getMessage()
+                )
+            );
+        }
+    } else {
+        http_response_code(401);
+
+        echo json_encode(
+            array(
+                "status" => 401,
+                "message" => "Access denied."
+            )
+        );
+    }
+}
+
 function getUser($user) {
     global $jwt; //get JWT from headers
     include_once 'config/core.php';
